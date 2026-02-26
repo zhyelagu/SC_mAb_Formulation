@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC mAb Formulation 용어집</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+<style>
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface2: #f0f2f5;
+  --surface3: #e8ebf0;
+  --border: #dce0e8;
+  --border-hl: #c4cad6;
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #94a3b8;
+  --accent: #3b82f6;
+  --accent2: #6366f1;
+  --accent-dim: rgba(59,130,246,0.08);
+  --accent-dim2: rgba(99,102,241,0.07);
+  --green: #10b981;
+  --green-dim: rgba(16,185,129,0.08);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.08);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.08);
+  --cat-basics: #3b82f6;
+  --cat-route: #7c3aed;
+  --cat-surf: #ec4899;
+  --cat-buffer: #059669;
+  --cat-stab: #d97706;
+  --cat-other: #ea580c;
+  --cat-pheno: #9333ea;
+  --cat-origin: #0d9488;
+  --cat-ind: #dc2626;
+  --cat-prod: #c026d3;
+  --cat-anal: #0284c7;
+  --cat-reg: #64748b;
+  --cat-exp: #16a34a;
+  --cat-pk: #ea580c;
+  --cat-ai: #4f46e5;
+  --cat-cert: #65a30d;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+::selection { background: var(--accent); color: white; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hl); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a0aab8; }
+
+/* Header */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,247,250,0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 32px;
+}
+.header-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.logo {
+  display: flex; align-items: baseline; gap: 10px;
+  flex-shrink: 0;
+}
+.logo-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+.logo-sub { font-size: 12px; color: var(--text3); font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
+.header-stats {
+  display: flex; gap: 20px; align-items: center;
+}
+.stat {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 500; color: var(--accent);
+}
+.stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Search bar */
+.search-wrap {
+  flex: 1; max-width: 420px; position: relative;
+}
+.search-input {
+  width: 100%; padding: 10px 16px 10px 40px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text);
+  font-size: 14px; font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.search-input::placeholder { color: var(--text3); }
+.search-icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--text3); pointer-events: none;
+}
+.search-count {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 11px; color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Layout */
+.layout {
+  max-width: 1400px; margin: 0 auto; padding: 24px 32px;
+  display: grid; grid-template-columns: 220px 1fr; gap: 24px;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; padding: 16px; }
+  .sidebar { display: none; }
+  .header-inner { flex-direction: column; align-items: stretch; }
+  .search-wrap { max-width: 100%; }
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky; top: 80px; align-self: start;
+  display: flex; flex-direction: column; gap: 4px;
+  max-height: calc(100vh - 100px); overflow-y: auto;
+}
+.sidebar-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border: none; background: transparent;
+  color: var(--text2); font-size: 12px; font-family: inherit;
+  border-radius: var(--radius-sm); cursor: pointer;
+  text-align: left; transition: all 0.15s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sidebar-btn:hover { background: var(--surface2); color: var(--text); }
+.sidebar-btn.active { background: var(--accent-dim); color: var(--accent); font-weight: 500; }
+.sidebar-btn .cat-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.sidebar-btn .cat-count {
+  margin-left: auto; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--text3); flex-shrink: 0;
+}
+
+/* Main content */
+.main { min-width: 0; }
+.category-section { margin-bottom: 32px; }
+.category-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); position: sticky; top: 68px; z-index: 10;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.category-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.category-name { font-size: 14px; font-weight: 600; }
+.category-count {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--text3);
+  background: var(--surface2); padding: 2px 8px; border-radius: 20px;
+}
+
+/* Term cards */
+.term-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 10px;
+}
+.term-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: all 0.2s;
+  cursor: default;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.term-card:hover {
+  border-color: var(--border-hl);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.term-card.new-term {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green-dim), 0 2px 8px rgba(16,185,129,0.1);
+}
+.term-card.new-term::before {
+  content: 'NEW'; position: absolute; top: 8px; right: 8px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  background: var(--green); color: white;
+  padding: 2px 6px; border-radius: 3px;
+}
+.term-card { position: relative; }
+.term-top {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.term-kr { font-size: 15px; font-weight: 600; color: var(--text); }
+.term-eng { font-size: 12px; color: var(--text2); }
+.term-meta {
+  display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.term-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; padding: 2px 7px;
+  border-radius: 4px; font-weight: 500;
+}
+.badge-abbr { background: var(--accent-dim); color: var(--accent); }
+.badge-pron { background: var(--accent-dim2); color: var(--accent2); }
+.term-desc {
+  font-size: 13px; color: var(--text2); line-height: 1.65;
+}
+
+/* Edit mode */
+.term-edit-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: 1px solid transparent;
+  color: var(--text3); cursor: pointer;
+  width: 28px; height: 28px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: all 0.15s;
+}
+.term-card:hover .term-edit-btn { opacity: 1; }
+.term-edit-btn:hover { background: var(--surface2); border-color: var(--border); color: var(--accent); }
+.term-card.editing { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim), var(--shadow); }
+.term-card.editing .term-edit-btn { display: none; }
+.term-card.editing .term-view { display: none; }
+.term-card .term-form { display: none; }
+.term-card.editing .term-form { display: block; }
+.edit-field { margin-bottom: 8px; }
+.edit-label {
+  font-size: 10px; font-weight: 600; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 3px; display: block;
+}
+.edit-input, .edit-textarea {
+  width: 100%; padding: 7px 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-size: 13px; font-family: inherit;
+  transition: border-color 0.15s;
+}
+.edit-input:focus, .edit-textarea:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+.edit-textarea { resize: vertical; min-height: 60px; line-height: 1.5; }
+.edit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.edit-actions {
+  display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end;
+}
+.edit-save, .edit-cancel, .edit-delete {
+  padding: 6px 14px; border: none; border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all 0.15s;
+}
+.edit-save { background: var(--accent); color: white; }
+.edit-save:hover { background: #2563eb; }
+.edit-cancel { background: var(--surface3); color: var(--text2); }
+.edit-cancel:hover { background: var(--border); }
+.edit-delete { background: none; color: var(--red); margin-right: auto; }
+.edit-delete:hover { background: var(--red-dim); }
+
+/* Upload panel */
+.upload-panel {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+}
+.upload-toggle {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none; color: white; font-size: 24px;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(59,130,246,0.35);
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.upload-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.4); }
+.upload-toggle.active { border-radius: var(--radius); }
+
+.upload-modal {
+  display: none; position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+.upload-modal.show { display: flex; }
+.upload-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  width: min(560px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.upload-title {
+  font-size: 18px; font-weight: 700; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+.upload-subtitle { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.upload-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; color: var(--text3);
+  font-size: 20px; cursor: pointer; padding: 4px;
+}
+.upload-close:hover { color: var(--text); }
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px 24px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+.dropzone:hover, .dropzone.dragover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.dropzone-icon { font-size: 36px; margin-bottom: 8px; }
+.dropzone-text { font-size: 13px; color: var(--text2); }
+.dropzone-hint { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+.file-info {
+  display: none; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--surface2);
+  border-radius: var(--radius-sm); margin-bottom: 16px;
+}
+.file-info.show { display: flex; }
+.file-name { font-size: 13px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-remove {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: 16px; padding: 2px;
+}
+.file-remove:hover { color: var(--red); }
+
+.extract-btn {
+  width: 100%; padding: 12px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none; border-radius: var(--radius);
+  color: white; font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.2s; opacity: 0.4; pointer-events: none;
+}
+.extract-btn.ready { opacity: 1; pointer-events: auto; }
+.extract-btn.ready:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(59,130,246,0.3); }
+.extract-btn.loading {
+  opacity: 0.7; pointer-events: none;
+  background: var(--surface3);
+}
+
+/* Progress */
+.progress-area { display: none; margin-top: 16px; }
+.progress-area.show { display: block; }
+.progress-bar-wrap {
+  height: 4px; background: var(--surface3);
+  border-radius: 2px; overflow: hidden; margin-bottom: 10px;
+}
+.progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  border-radius: 2px; transition: width 0.5s ease;
+}
+.progress-text { font-size: 12px; color: var(--text3); }
+
+/* Results */
+.results-area { display: none; margin-top: 20px; }
+.results-area.show { display: block; }
+.results-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.results-title { font-size: 14px; font-weight: 600; }
+.results-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--green);
+  background: var(--green-dim); padding: 2px 8px; border-radius: 20px;
+}
+.result-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.result-check {
+  appearance: none; width: 18px; height: 18px; flex-shrink: 0;
+  border: 2px solid var(--border-hl); border-radius: 4px;
+  cursor: pointer; margin-top: 2px; position: relative;
+  transition: all 0.15s;
+}
+.result-check:checked {
+  background: var(--accent); border-color: var(--accent);
+}
+.result-check:checked::after {
+  content: '✓'; position: absolute; top: -1px; left: 2px;
+  color: white; font-size: 12px; font-weight: 700;
+}
+.result-body { flex: 1; min-width: 0; }
+.result-term { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.result-eng { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+.result-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+.result-dup {
+  font-size: 10px; color: var(--amber);
+  background: var(--amber-dim); padding: 1px 6px;
+  border-radius: 3px; display: inline-block; margin-top: 4px;
+}
+
+.add-btn {
+  width: 100%; padding: 12px; margin-top: 12px;
+  background: var(--green); border: none;
+  border-radius: var(--radius); color: white;
+  font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.2s;
+}
+.add-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(16,185,129,0.25); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 90px; right: 24px; z-index: 400;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 20px;
+  font-size: 13px; box-shadow: var(--shadow);
+  transform: translateY(20px); opacity: 0;
+  transition: all 0.3s; pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { border-color: var(--green); }
+.toast.error { border-color: var(--red); }
+
+/* Empty state */
+.empty-state {
+  text-align: center; padding: 60px 20px; color: var(--text3);
+}
+.empty-state-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty-state-text { font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-mark">SC mAb Glossary</span>
+      <span class="logo-sub">첨가물 패턴 분석 용어집</span>
+    </div>
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="용어, 영문명, 약어로 검색...">
+      <span class="search-count" id="searchCount"></span>
+    </div>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-num" id="termCount">0</span>
+        <span class="stat-label">용어</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="catCount">0</span>
+        <span class="stat-label">카테고리</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main" id="mainContent"></main>
+</div>
+
+<!-- Upload FAB -->
+<div class="upload-panel">
+  <button class="upload-toggle" id="uploadToggle" title="회의록 업로드">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+  </button>
+</div>
+
+<!-- Upload Modal -->
+<div class="upload-modal" id="uploadModal">
+  <div class="upload-box" style="position:relative;">
+    <button class="upload-close" id="uploadClose">✕</button>
+    <div class="upload-title">📄 회의록에서 용어 자동 추출</div>
+    <div class="upload-subtitle">회의록(.docx, .txt)을 업로드하면 AI가 새로운 전문 용어를 추출합니다</div>
+    
+    <div class="dropzone" id="dropzone">
+      <div class="dropzone-icon">📁</div>
+      <div class="dropzone-text">파일을 드래그하거나 클릭하여 선택</div>
+      <div class="dropzone-hint">.docx 또는 .txt 파일 지원</div>
+    </div>
+    <input type="file" id="fileInput" accept=".docx,.txt" style="display:none">
+    
+    <div class="file-info" id="fileInfo">
+      <span>📎</span>
+      <span class="file-name" id="fileName"></span>
+      <button class="file-remove" id="fileRemove">✕</button>
+    </div>
+    
+    <button class="extract-btn" id="extractBtn">🔍 용어 추출 시작</button>
+    
+    <div class="progress-area" id="progressArea">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">회의록 분석 중...</div>
+    </div>
+    
+    <div class="results-area" id="resultsArea">
+      <div class="results-header">
+        <span class="results-title">추출된 용어</span>
+        <span class="results-count" id="resultsCount">0개</span>
+      </div>
+      <div id="resultsList"></div>
+      <button class="add-btn" id="addBtn">✅ 선택한 용어 추가</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ========== GLOSSARY DATA ==========
+const INITIAL_DATA = [{"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "단일클론항체", "eng": "Monoclonal Antibody", "abbr": "mAb", "pron": "엠-에이-비 (맵)", "desc": "하나의 세포에서 복제된 동일한 항체. 미사일처럼 특정 표적만 공격하도록 설계된 단백질 치료제. 항체는 살아있는 세포가 아니라 '단백질 덩어리'로, 실타래처럼 접혀 있는 구조가 풀리면 기능을 잃음"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "제형", "eng": "Formulation", "abbr": "-", "pron": "포뮬레이션", "desc": "약물(항체)을 안전하게 보관·투여할 수 있도록 만든 '완제품 레시피'. 항체 + 첨가물 + 용매를 적절히 배합한 최종 주사액의 구성"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "첨가물", "eng": "Excipient", "abbr": "-", "pron": "익스피언트", "desc": "항체(단백질)가 실타래처럼 풀리지 않도록 보호해주는 보조 물질. 비유하면, 아이스크림이 녹지 않게 냉동고 역할을 하는 것. 크게 계면활성제, 완충제, 안정화제로 나뉨"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "유효 성분", "eng": "Active Pharmaceutical Ingredient", "abbr": "API", "pron": "에이-피-아이", "desc": "실제 치료 효과를 내는 핵심 물질(여기서는 항체 자체). IT의 API(Application Programming Interface)와 다른 용어이므로 주의. 농도 구간(25-50, 50-100, 100-150, >150 mg/mL)별로 첨가물 패턴이 달라짐"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "농도", "eng": "Concentration", "abbr": "mg/mL", "pron": "컨센트레이션", "desc": "용액 1mL 안에 녹아 있는 물질의 양(mg). 설탕물에 비유하면 '얼마나 달게 탔는가'. SC 제형은 IV보다 훨씬 고농도(진하게)로 만들어야 함"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "투여 경로", "eng": "Route of Administration", "abbr": "Route", "pron": "라우트", "desc": "약물을 체내에 투입하는 방법. 본 문서에서는 IV(정맥), SC(피하), IM(근육) 등으로 분류. 투여 경로에 따라 필요한 첨가물 패턴이 크게 달라짐"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "메타 분석", "eng": "Meta-analysis", "abbr": "-", "pron": "메타 어낼리시스", "desc": "여러 연구 결과나 문서를 통합하여 종합적으로 분석하는 방법. 본 문서는 FDA 209건 + EMA 282건 = 총 491건의 규제 문서를 메타 분석한 결과"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "주사용수", "eng": "Water for Injection", "abbr": "WFI", "pron": "워터 포 인젝션", "desc": "주사제를 만들 때 사용하는 초순수한 물. 일반 정수기 물과 달리 미생물, 발열물질, 이온 등이 모두 제거된 물. 항체 + 첨가물을 이 물에 녹여 최종 주사액을 만듦"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "2단계 트리 분류", "eng": "Two-level Tree Classification", "abbr": "-", "pron": "투-레벨 트리", "desc": "본 문서의 핵심 분석 구조. 1단계(대분류): 계면활성제/완충제/안정화제/기타 → 2단계(소분류): 개별 첨가물명. 히트맵의 Y축이 이 트리 구조로 정렬되어 있음"}, {"category": "📋 제형 관련 기본 용어 (Formulation Basics)", "term": "플랫폼 효과", "eng": "Platform Effect", "abbr": "-", "pron": "플랫폼 이펙트", "desc": "특정 오리지널 제품의 제형이 바이오시밀러에도 그대로 답습되어, 분석 결과에 과대 반영되는 현상. 예: IgG2의 독특한 패턴(PS20+Acetate+Sorbitol)은 adalimumab 바이오시밀러가 대다수를 차지하기 때문. IgG subclass 자체의 물성과 제품별 플랫폼 효과가 혼재"}, {"category": "💉 투여 경로 (Route of Administration)", "term": "정맥주사", "eng": "Intravenous", "abbr": "IV", "pron": "아이-브이", "desc": "혈관(정맥)에 직접 주사하는 방식. 병원에서 링거를 맞는 것과 같은 원리. 대량의 약물을 천천히 투여할 수 있어 농도가 상대적으로 낮음"}, {"category": "💉 투여 경로 (Route of Administration)", "term": "피하주사", "eng": "Subcutaneous", "abbr": "SC", "pron": "에스-씨 (서브큐테이니어스)", "desc": "피부 아래 지방층에 주사하는 방식. 인슐린 자가주사처럼 환자가 직접 놓을 수 있음. 소량만 주입 가능하므로 고농도 제형이 필요하고, 안정성 확보가 더 어려움"}, {"category": "💉 투여 경로 (Route of Administration)", "term": "근육주사", "eng": "Intramuscular", "abbr": "IM", "pron": "아이-엠", "desc": "근육에 직접 주사하는 방식. 본 분석에서는 제외됨 (26건)"}, {"category": "💉 투여 경로 (Route of Administration)", "term": "IV+SC 겸용", "eng": "IV+SC Dual Route", "abbr": "IV+SC", "pron": "아이브이 플러스 에스씨", "desc": "IV와 SC 양쪽 경로로 모두 승인받은 제품. 24건이 해당. 분석 시 IV 분석에도, SC 분석에도 각각 포함됨 (예: rituximab)"}, {"category": "💉 투여 경로 (Route of Administration)", "term": "유리체내주사", "eng": "Intravitreal Injection", "abbr": "-", "pron": "인트라비트리얼", "desc": "눈의 유리체(젤리 같은 부분)에 직접 주사하는 방식. 황반변성 등 안과 질환 치료에 사용. 본 분석에서는 IM과 함께 '기타'로 분류되어 제외됨 (총 26건)"}, {"category": "🧴 계면활성제 (Surfactant, 서팩턴트)", "term": "폴리소르베이트 80", "eng": "Polysorbate 80", "abbr": "PS80", "pron": "폴리소르베이트 에이티", "desc": "가장 널리 쓰이는 계면활성제. SC 50%, IV 66% 사용. IgG1(75%), IgG4(67%)에서 선호. 고농도(≥150 mg/mL)에서 78%로 지배적. 농도 0.1~2.0 mg/mL"}, {"category": "🧴 계면활성제 (Surfactant, 서팩턴트)", "term": "폴리소르베이트 20", "eng": "Polysorbate 20", "abbr": "PS20", "pron": "폴리소르베이트 트웬티", "desc": "PS80과 유사한 계면활성제. IgG2에서 54%로 PS80보다 선호됨. 저·중농도 제형에서 주로 사용되며, 고농도(≥150)에서는 PS80으로 전환되는 경향"}, {"category": "🧴 계면활성제 (Surfactant, 서팩턴트)", "term": "폴록사머 188", "eng": "Poloxamer 188", "abbr": "-", "pron": "폴록사머 원에이티에잇", "desc": "비이온성 계면활성제. PS80/PS20의 대안으로 일부 제형에서 사용. SC 약 6% 사용률"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "히스티딘", "eng": "Histidine", "abbr": "His", "pron": "히스티딘", "desc": "아미노산 기반 완충제. SC 42% 사용. IgG1(42%), IgG4(61%)에서 높은 사용률. Histidine + Histidine HCl 쌍으로 pH 5.5~6.5 유지"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "히스티딘 염산염", "eng": "Histidine Hydrochloride", "abbr": "Histidine HCl", "pron": "히스티딘 에이치씨엘", "desc": "히스티딘의 산성 짝꿍. 산-염기 쌍으로 완충 작용. 농도 IgG 종류 관계없이 2~4 mg/mL로 비교적 일정"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "아세트산", "eng": "Acetic Acid", "abbr": "-", "pron": "어세틱 애시드", "desc": "식초의 주성분과 같은 계열의 산. IgG2(58%), fully human 항체에서 높은 사용률. 고농도 제형에서 감소 경향(histidine 완충계로 전환)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "아세테이트", "eng": "Acetate", "abbr": "-", "pron": "아세테이트", "desc": "아세트산의 이온 형태(짝염기). 히트맵에서 아세트산과 별도로 표기되는 경우가 있음. IgG2에서 12% 사용"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "소듐 아세테이트", "eng": "Sodium Acetate", "abbr": "-", "pron": "소듐 아세테이트", "desc": "아세트산의 염기성 짝꿍. Acetate buffer 시스템을 구성. SC 20% 사용"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "시트르산", "eng": "Citric Acid", "abbr": "-", "pron": "시트릭 애시드", "desc": "레몬·오렌지에 들어 있는 산 계열. 완충제로 사용. IV 15%, SC 9%"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "소듐 시트레이트", "eng": "Sodium Citrate", "abbr": "-", "pron": "소듐 시트레이트", "desc": "시트르산의 염기성 짝꿍. Citrate buffer 시스템 구성"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "인산이수소나트륨", "eng": "Sodium Dihydrogen Phosphate", "abbr": "NaH₂PO₄", "pron": "엔에이에이치투피오포 (소듐 다이하이드로젠 포스페이트)", "desc": "인산염 완충제의 산성 성분. 인산(H₃PO₄)에서 수소 2개가 남아 있는 형태. IV 일부 제형에서 사용. EMA 표기가 별도로 존재하기도 함"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "인산수소이나트륨", "eng": "Disodium Hydrogen Phosphate (= Disodium Phosphate)", "abbr": "Na₂HPO₄", "pron": "엔에이투에이치피오포 (다이소듐 포스페이트)", "desc": "인산염 완충제의 염기성 성분. Disodium phosphate와 동일 물질임. 인산(H₃PO₄)에서 수소 1개만 남은 형태. NaH₂PO₄와 쌍으로 phosphate buffer 시스템을 구성. IV 5~12% 사용. EMA 표기 별도 존재"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "수산화나트륨", "eng": "Sodium Hydroxide", "abbr": "NaOH", "pron": "엔에이오에이치 (소듐 하이드록사이드)", "desc": "강염기 pH 조절제. SC 32%. IgG2에서 54%로 특히 높음. 용액의 pH를 올려주는 역할"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "염산", "eng": "Hydrochloric Acid", "abbr": "HCl", "pron": "에이치씨엘 (하이드로클로릭 애시드)", "desc": "강산 pH 조절제. pH를 낮추는 역할. SC 12%"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "젖산", "eng": "Lactic Acid", "abbr": "-", "pron": "랙틱 애시드", "desc": "우유 발효 시 생기는 산. 일부 SC 제형에서 완충제로 사용 (hematology 6%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "숙신산", "eng": "Succinic Acid", "abbr": "-", "pron": "석시닉 애시드", "desc": "디카복실산 계열 완충제. IgG1 일부 제형에서 사용 (4%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "이나트륨 숙시네이트", "eng": "Disodium Succinate", "abbr": "-", "pron": "다이소듐 석시네이트", "desc": "숙신산의 나트륨 염 형태. Succinate buffer 시스템의 염기성 성분"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "소듐 숙시네이트", "eng": "Sodium Succinate", "abbr": "-", "pron": "소듐 석시네이트", "desc": "숙신산나트륨. 일부 적응증(Respiratory)에서 사용 (7%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "아디프산", "eng": "Adipic Acid", "abbr": "-", "pron": "어디픽 애시드", "desc": "디카복실산 계열. IgG1 일부 제형에서 완충제로 사용 (7%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "아스파르트산", "eng": "Aspartic Acid", "abbr": "Asp", "pron": "어스파틱 애시드", "desc": "산성 아미노산. 완충 보조제로 일부 제형에서 사용. IgG2(4%), IgG4(11%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "트리스 염산염", "eng": "Tris Hydrochloride", "abbr": "Tris HCl", "pron": "트리스 에이치씨엘", "desc": "트리스(하이드록시메틸)아미노메탄의 염산염. 생화학 실험에서 매우 흔한 완충제. IgG2 일부에서 사용 (4%)"}, {"category": "⚗️ 완충제 (Buffer, 버퍼)", "term": "트로메타몰", "eng": "Trometamol", "abbr": "-", "pron": "트로메타몰", "desc": "Tris의 다른 이름(INN명). 유럽 약전에서 주로 사용하는 명칭. IgG2 일부에서 사용 (4%)"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "수크로스", "eng": "Sucrose", "abbr": "-", "pron": "수크로스", "desc": "설탕과 유사한 이당류. IV에서 동결건조 보호, SC에서 열안정성 보호. SC 32%. IgG4(44%), hematology에서 높은 사용률. 농도 50~120 mg/mL"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "트레할로스", "eng": "Trehalose", "abbr": "-", "pron": "트레할로스", "desc": "수크로스와 유사한 이당류 안정화제. IV 24%, SC 11%. IgG1에서 21%. 농도 60~90 mg/mL"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "소르비톨", "eng": "Sorbitol", "abbr": "-", "pron": "소르비톨", "desc": "당알코올 안정화제. SC 32%. IgG2에서 50%로 매우 높음. IV/SC 모두 ~46 mg/mL의 거의 고정 농도(SD=1.2). 50~100 mg/mL API 농도 구간에 집중"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "만니톨", "eng": "Mannitol", "abbr": "-", "pron": "매니톨", "desc": "당알코올 안정화제. IV 7%, SC 6%. 동결건조 제형에서 부형제(bulk agent)로도 사용"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "아르기닌", "eng": "Arginine", "abbr": "Arg", "pron": "아르지닌", "desc": "양전하 아미노산. 점도 감소 및 응집 억제 기능. IV 3%, SC 6%"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "아르기닌 염산염", "eng": "Arginine Hydrochloride", "abbr": "Arg HCl", "pron": "아르지닌 에이치씨엘", "desc": "아르기닌의 염산염 형태. 고농도 제형에서 점도를 낮추는 데 기여. IgG4에서 22%"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "글리신", "eng": "Glycine", "abbr": "Gly", "pron": "글라이신", "desc": "가장 단순한 아미노산. 안정화 및 동결건조 보호 역할. IV 5%, SC 3%"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "프롤린", "eng": "Proline", "abbr": "Pro", "pron": "프롤린", "desc": "고리형 아미노산. 응집 방지 안정화제. SC 6%. IgG2에서 15%"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "L-프롤린", "eng": "L-Proline", "abbr": "-", "pron": "엘-프롤린", "desc": "프롤린의 L-이성질체(자연에 존재하는 형태). 히트맵에서 Proline과 별도로 표기되는 경우가 있음. 일부 IgG4(4%) 제형에서 사용"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "메티오닌", "eng": "Methionine", "abbr": "Met", "pron": "메사이오닌", "desc": "황(S) 포함 아미노산. 항산화제로 기능하여 산화 손상 방지. IV 10% → SC 12%로 증가(고농도 환경에서 산화 위험 증가)"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "글루타메이트", "eng": "Glutamate", "abbr": "Glu", "pron": "글루타메이트", "desc": "글루탐산의 이온 형태. 안정화 보조제. IgG1 일부에서 사용"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "글루탐산", "eng": "Glutamic Acid", "abbr": "-", "pron": "글루타믹 애시드", "desc": "산성 아미노산. 감칠맛의 원료(MSG의 기반 물질). 일부 제형에서 안정화 또는 완충 보조 역할"}, {"category": "🛡️ 안정화제 (Stabilizer, 스테빌라이저)", "term": "MSG", "eng": "Monosodium Glutamate", "abbr": "MSG", "pron": "엠에스지", "desc": "글루탐산나트륨. 식품 조미료로 유명하지만 제약에서도 안정화 보조제로 사용. IgG1 일부(4%)"}, {"category": "🔧 기타 첨가물 (Others)", "term": "염화나트륨", "eng": "Sodium Chloride", "abbr": "NaCl", "pron": "엔에이씨엘 (소듐 클로라이드)", "desc": "소금의 화학명. 등장성(삼투압) 조절 목적. IV 28% → SC 19%로 감소(고농도 제형에서 삼투압이 이미 높아 불필요). 단, 초고농도(≥150)에서는 오히려 증가"}, {"category": "🔧 기타 첨가물 (Others)", "term": "이디티에이", "eng": "Ethylenediaminetetraacetic Acid", "abbr": "EDTA", "pron": "이-디-티-에이", "desc": "금속 이온 킬레이터(chelator). 금속 이온에 의한 항체 산화를 방지하는 '금속 청소부'. IV 13%, SC 10%"}, {"category": "🔧 기타 첨가물 (Others)", "term": "페놀", "eng": "Phenol", "abbr": "-", "pron": "피놀", "desc": "방부제(preservative). 다회 투여용 바이알에서 미생물 오염 방지. IgG4에서 11%"}, {"category": "🔧 기타 첨가물 (Others)", "term": "칼슘", "eng": "Calcium", "abbr": "Ca", "pron": "칼슘", "desc": "일부 SC 제형에서 안정화 보조 또는 특정 단백질 활성에 필요한 이온으로 사용 (IgG2 4%)"}, {"category": "🔧 기타 첨가물 (Others)", "term": "폴리소르베이트", "eng": "Polysorbate", "abbr": "-", "pron": "폴리소르베이트", "desc": "PS20/PS80의 총칭. 히트맵에서 구체적 타입 미표기 시 사용되는 범주명. 초고농도 구간에서 4%"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "페노타입", "eng": "Phenotype", "abbr": "-", "pron": "피노타입", "desc": "항체를 다양한 기준으로 분류하는 '유형'. 혈액형(A/B/O/AB)으로 분류하듯, 항체도 여러 기준으로 분류. 본 문서 5가지 기준: ①투여 경로(IV/SC), ②IgG 서브클래스(1/2/4), ③항체 기원(chimeric/fully human/humanized), ④적응증, ⑤API 농도 구간"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "면역글로불린 G", "eng": "Immunoglobulin G", "abbr": "IgG", "pron": "아이-지-지", "desc": "혈액에 가장 많은 항체 유형. 병원체를 인식하고 면역 반응을 일으킴. IgG1~4의 서브클래스가 있음"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "IgG1", "eng": "IgG Subclass 1", "abbr": "IgG1", "pron": "아이지지-원", "desc": "혈중 IgG의 약 60~70%로 가장 흔함. 분석 n=57. 대표 패턴: PS80(75%) + Histidine(42%) + Sucrose(32%). NaCl 26%"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "IgG2", "eng": "IgG Subclass 2", "abbr": "IgG2", "pron": "아이지지-투", "desc": "혈중 IgG의 약 20~25%. 분석 n=26. 독특한 패턴: PS20(54%) + Acetate buffer(58%) + Sorbitol(50%). Adalimumab 바이오시밀러 플랫폼 효과가 반영"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "IgG3", "eng": "IgG Subclass 3", "abbr": "IgG3", "pron": "아이지지-쓰리", "desc": "혈중 IgG의 약 5~8%. 힌지 영역이 길어 제조가 매우 어렵고 불안정. 현재 치료용 항체 제품이 거의 없음. 새로운 도전 영역"}, {"category": "🔬 항체 분류 - 페노타입 (Phenotype)", "term": "IgG4", "eng": "IgG Subclass 4", "abbr": "IgG4", "pron": "아이지지-포", "desc": "혈중 IgG의 약 4%. 분석 n=18. IgG1과 유사 패턴: PS80(67%) + Histidine(61%) + Sucrose(44%). NaCl 39%"}, {"category": "🧬 항체 기원 (Antibody Origin)", "term": "키메릭 항체", "eng": "Chimeric Antibody", "abbr": "-", "pron": "카이메릭 앤티바디", "desc": "두 종의 유전자를 합친 항체. 마우스의 항원인식 부위 + 인간의 나머지를 결합. 약 이름에 '-ximab' (예: rituximab). 분석 n=2"}, {"category": "🧬 항체 기원 (Antibody Origin)", "term": "완전 인간 항체", "eng": "Fully Human Antibody", "abbr": "-", "pron": "풀리 휴먼 앤티바디", "desc": "100% 인간 유래 서열 항체. 분석 n=60. 패턴: Acetate buffer + PS80 + Sorbitol 우세. 약 이름에 '-umab' (예: adalimumab)"}, {"category": "🧬 항체 기원 (Antibody Origin)", "term": "인간화 항체", "eng": "Humanized Antibody", "abbr": "-", "pron": "휴머나이즈드 앤티바디", "desc": "동물 항체의 핵심부만 남기고 인간 서열로 교체한 항체. 분석 n=42. 패턴: Histidine buffer + Sucrose 조합. 약 이름에 '-zumab' (예: trastuzumab)"}, {"category": "🏥 적응증 (Indication)", "term": "적응증", "eng": "Indication", "abbr": "-", "pron": "인디케이션", "desc": "해당 약이 치료하는 질병/증상. '이 약은 어떤 병에 쓰나요?'에 대한 답. 본 문서에서 9개 적응증별 첨가물 패턴을 분석"}, {"category": "🏥 적응증 (Indication)", "term": "종양학", "eng": "Oncology", "abbr": "-", "pron": "온콜로지", "desc": "암 치료 영역 (n=10). 패턴: Acetic acid + PS20 + Sorbitol. 고농도 SC에서 acetate/PS20 조합 선호. 첨가물 농도 분산이 큰 경향"}, {"category": "🏥 적응증 (Indication)", "term": "혈액학", "eng": "Hematology", "abbr": "-", "pron": "헤마톨로지", "desc": "혈액 질환 치료 영역 (n=6). 패턴: Histidine + Sucrose + PS80 — histidine-sucrose 조합 압도적"}, {"category": "🏥 적응증 (Indication)", "term": "면역학", "eng": "Immunology", "abbr": "-", "pron": "이뮤놀로지", "desc": "자가면역질환(류마티스 관절염 등) 치료 (n=25, 최대). PS80 + Sucrose + NaCl로 가장 다양한 패턴"}, {"category": "🏥 적응증 (Indication)", "term": "내분비학", "eng": "Endocrinology", "abbr": "-", "pron": "엔도크리놀로지", "desc": "호르몬 관련 질환 치료 (n=6). 패턴: Acetic acid + Sorbitol + PS20 + NaOH. Sorbitol ~46 mg/mL로 매우 일관된 농도"}, {"category": "🏥 적응증 (Indication)", "term": "호흡기학", "eng": "Respiratory", "abbr": "-", "pron": "레스피러토리", "desc": "천식, COPD 등 호흡기 질환 치료 (n=10). 패턴: Histidine + Histidine HCl + PS20"}, {"category": "🏥 적응증 (Indication)", "term": "피부과학", "eng": "Dermatology", "abbr": "-", "pron": "더마톨로지", "desc": "건선, 아토피 등 피부 질환 치료 (n=12). 본 문서 Figure 4에서 적응증별 히트맵에 포함"}, {"category": "🏥 적응증 (Indication)", "term": "신경학", "eng": "Neurology", "abbr": "-", "pron": "뉴롤로지", "desc": "다발성경화증 등 신경계 질환 치료 (n=12). Figure 4 적응증별 히트맵에 포함"}, {"category": "🏥 적응증 (Indication)", "term": "심혈관학", "eng": "Cardiovascular", "abbr": "-", "pron": "카디오바스큘러", "desc": "심장 및 혈관 질환 치료 (n=4). Figure 4 적응증별 히트맵에 포함"}, {"category": "🏥 적응증 (Indication)", "term": "희귀질환", "eng": "Rare Disease", "abbr": "-", "pron": "레어 디지즈", "desc": "환자 수가 매우 적은 희귀 질환 치료 영역 (n=4). Figure 4 적응증별 히트맵에 포함"}, {"category": "💊 예시 제품명 (Example Products)", "term": "아달리무맙", "eng": "Adalimumab", "abbr": "-", "pron": "아달리무맙", "desc": "대표적 fully human IgG1 항체(상품명: 휴미라). 류마티스 관절염 등 자가면역질환 치료. 바이오시밀러가 가장 많은 제품. IgG2 제형 패턴에 큰 영향"}, {"category": "💊 예시 제품명 (Example Products)", "term": "리툭시맙", "eng": "Rituximab", "abbr": "-", "pron": "리툭시맙", "desc": "대표적 chimeric 항체. 림프종 등 치료. IV+SC 겸용 승인 제품의 예시로 본 문서에서 언급"}, {"category": "💊 예시 제품명 (Example Products)", "term": "비메키주맙", "eng": "Bimekizumab-bkzx", "abbr": "-", "pron": "비메키주맙", "desc": "건선 치료 humanized 항체. Figure 4 히트맵에서 개별 제품명으로 표기됨 (특이 첨가물 포함)"}, {"category": "💊 예시 제품명 (Example Products)", "term": "카나키누맙", "eng": "Canakinumab", "abbr": "-", "pron": "카나키누맙", "desc": "자가염증질환 치료 항체. Figure 4 히트맵에서 개별 제품명으로 표기됨"}, {"category": "💊 예시 제품명 (Example Products)", "term": "론카스툭시맙", "eng": "Loncastuximab", "abbr": "-", "pron": "론카스툭시맙", "desc": "림프종 치료 항체-약물 접합체(ADC). Figure 5 히트맵에서 개별 제품명으로 표기됨"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "안정성 시험", "eng": "Stability Test", "abbr": "-", "pron": "스태빌리티 테스트", "desc": "항체가 일정 기간 원래 기능을 유지하는지 검사. Safety(안전성=독성 검사)와 다른 개념. 보관 온도, 보관 기간, 개봉 후 사용 시간 등을 평가"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "등전점", "eng": "Isoelectric Point", "abbr": "pI", "pron": "피-아이", "desc": "단백질 순전하가 0이 되는 pH. 이 지점에서 응집이 잘 일어나 가장 불안정. 제형 pH를 pI보다 낮게(pH 5~6.2) 유지하는 것이 핵심"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "산도", "eng": "pH (potential of Hydrogen)", "abbr": "pH", "pron": "피-에이치", "desc": "용액의 산성/염기성 정도. 7이 중성, <7 산성, >7 염기성. 항체 제형은 보통 pH 5~6.2 약산성"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "응집", "eng": "Aggregation", "abbr": "-", "pron": "애그리게이션", "desc": "항체 분자들이 서로 뭉쳐 덩어리를 형성하는 현상. 면역 반응을 유발할 수 있어 반드시 방지해야 함. 계면활성제가 억제"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "소수성", "eng": "Hydrophobicity", "abbr": "-", "pron": "하이드로포비시티", "desc": "물을 멀리하는(물에 안 녹는) 성질. 기름이 물에 안 섞이는 것이 예시. '소(疏)원해진다'의 소"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "친수성", "eng": "Hydrophilicity", "abbr": "-", "pron": "하이드로필리시티", "desc": "물과 친한(물에 잘 녹는) 성질. 설탕이 물에 잘 녹는 것이 예시"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "등장성", "eng": "Isotonicity / Tonicity", "abbr": "-", "pron": "아이소토니시티", "desc": "주사액의 삼투압이 혈액과 같은 상태. 등장성이 맞지 않으면 세포가 쪼그라들거나 터질 수 있음. NaCl이 등장성 조절에 사용됨"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "삼투압", "eng": "Osmotic Pressure / Osmolality", "abbr": "-", "pron": "오스모틱 프레셔", "desc": "반투막을 통해 용매가 이동하려는 압력. 주사액에서 삼투압이 너무 높으면 통증·조직 손상 유발. SC 고농도 제형에서 NaCl 사용이 줄어드는 이유"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "항산화제", "eng": "Antioxidant", "abbr": "-", "pron": "앤티옥시던트", "desc": "산화(산소에 의한 손상)를 막아주는 물질. 메티오닌이 대표적. SC 고농도 제형에서 산화 위험이 커져 사용 증가"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "킬레이터", "eng": "Chelator", "abbr": "-", "pron": "킬레이터", "desc": "금속 이온을 붙잡아 무력화시키는 물질. 게의 집게(chela)에서 유래. EDTA가 대표적 킬레이터로 금속 이온에 의한 항체 산화를 방지"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "수화층", "eng": "Hydration Shell / Water Layer", "abbr": "-", "pron": "하이드레이션 셸", "desc": "안정화제(수크로스 등)가 항체 표면의 물을 흡수하여 형성하는 보호막. 교수님 비유: '설탕 같은 걸 넣어주면 항체 표면에 물층을 만들어 코팅된 것처럼 실타래가 안 풀림'. 이 수화층이 항체의 3D 구조를 보존하는 핵심 메커니즘"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "전하", "eng": "Charge (Net Charge)", "abbr": "-", "pron": "차지 (넷 차지)", "desc": "단백질 표면의 (+) 또는 (-) 전기적 성질. pH가 등전점(pI)보다 낮으면 양전하(+), 높으면 음전하(-)를 띰. 같은 전하를 띠면 서로 밀어내므로 응집이 방지됨. 그래서 pH를 pI 이하로 유지하는 것이 중요"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "엔트로피", "eng": "Entropy", "abbr": "-", "pron": "엔트로피", "desc": "열역학 제2법칙에 따른 '무질서도'. 교수님 설명: '지구상에 있는 모든 것은 항상 무질서하게 망가지거나 훼손되는 경향이 있음'. 단백질도 자연 상태에서 실타래가 풀려 기능을 잃는 방향으로 변하므로, 이를 막기 위해 첨가물이 필요"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "동결건조", "eng": "Lyophilization / Freeze-drying", "abbr": "-", "pron": "라이오필라이제이션", "desc": "용액을 얼린 후 진공에서 수분을 제거하여 분말로 만드는 기술. 장기 보관에 유리. IV 제형에서 Sucrose/Trehalose가 동결건조 보호제(lyoprotectant)로 사용"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "아미노산 서열", "eng": "Amino Acid Sequence", "abbr": "-", "pron": "어미노 애시드 시퀀스", "desc": "단백질을 구성하는 아미노산의 연결 순서. 20종의 아미노산이 수 개~3,000개까지 사슬처럼 연결. 이 서열이 항체의 3D 구조, 기능, 페노타입을 결정"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "히트맵", "eng": "Heatmap", "abbr": "-", "pron": "히트맵", "desc": "값의 크기를 색상 농도로 표현한 그래프. 본 문서에서 첨가물 사용률(%)을 색상으로 표시. 진한색(빨간색)일수록 사용률 높음. FDA+EMA 전체 데이터 사용"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "박스플롯", "eng": "Box Plot", "abbr": "-", "pron": "박스플롯", "desc": "데이터 분포를 상자와 수염으로 보여주는 그래프. 중앙값, 사분위수, 이상값을 한눈에 파악. 본 문서에서 첨가물 농도 분포 표시. FDA 데이터만 사용"}, {"category": "📊 분석 및 안정성 관련 용어", "term": "인과 모델", "eng": "Causal Model", "abbr": "-", "pron": "코절 모델", "desc": "원인과 결과의 관계를 그래프로 표현하는 분석 방법. 아미노산 서열 → 항체 특성 → 첨가물 선택 → 안정성 결과의 경로를 모델링하는 것이 향후 연구 과제"}, {"category": "🏛️ 규제 기관 및 도구", "term": "미국 식약처", "eng": "Food and Drug Administration", "abbr": "FDA", "pron": "에프-디-에이", "desc": "미국의 의약품 승인·감독 기관. 첨가물 농도 데이터를 상세 공개(채움률 31~54%). 본 분석의 농도 데이터(박스플롯)는 FDA만 사용. 수집 209건"}, {"category": "🏛️ 규제 기관 및 도구", "term": "유럽 의약품청", "eng": "European Medicines Agency", "abbr": "EMA", "pron": "이-엠-에이", "desc": "유럽연합의 의약품 승인·감독 기관. 첨가물 사용 여부는 확인 가능하나 농도 데이터 공개 제한적(5%). 수집 282건"}, {"category": "🏛️ 규제 기관 및 도구", "term": "바이오시밀러", "eng": "Biosimilar", "abbr": "-", "pron": "바이오시밀러", "desc": "오리지널 바이오의약품의 '복제약'. 제네릭과 유사하나 생물학적 제제라 완전히 동일하지 않음. IgG2 제형 패턴에 adalimumab 바이오시밀러가 큰 영향"}, {"category": "🏛️ 규제 기관 및 도구", "term": "GPT-5", "eng": "GPT-5", "abbr": "-", "pron": "지피티-파이브", "desc": "OpenAI의 대규모 언어 모델. 본 분석에서 각 제품의 IgG subclass, 항체 기원, 적응증 등 분류 메타데이터를 추출하는 데 활용됨(2,822행 중 1,702행 매핑)"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "고속 스크리닝", "eng": "High-Throughput Screening", "abbr": "HTS", "pron": "에이치-티-에스", "desc": "짧은 시간에 수백~수천 개의 조건을 동시에 실험하는 방법. 96-웰 플레이트를 사용하여 318개 제형 매트릭스를 96개씩 반복 실험하는 인프라가 본 과제에 구축됨"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "96-웰 플레이트", "eng": "96-Well Plate", "abbr": "-", "pron": "나인티식스 웰 플레이트", "desc": "가로 12칸 × 세로 8칸 = 96개의 작은 우물(well)이 있는 실험 판. 한 번에 96가지 조건을 동시에 실험 가능. 미니어처 시험관 96개를 하나의 판에 모아놓은 형태"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "점도", "eng": "Viscosity", "abbr": "-", "pron": "비스코시티", "desc": "액체가 흐르기 어려운 정도. 꿀처럼 끈적한 것이 점도가 높은 것. 항체 농도가 올라가면 점도가 급격히 증가하여 주사가 어려워짐. SC 제형 개발의 핵심 도전 과제"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "점도 저감제", "eng": "Viscosity Reducer", "abbr": "-", "pron": "비스코시티 리듀서", "desc": "고농도 항체 용액의 점도를 낮추는 첨가물. 꿀에 물을 타서 묽게 만드는 것과 유사. 고농축(≥150 mg/mL) 제형에서 스크리닝이 필요한 핵심 요소"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "주사 압력", "eng": "Injection Force / Glide Force", "abbr": "-", "pron": "인젝션 포스 / 글라이드 포스", "desc": "주사기 플런저를 밀 때 필요한 힘. 단순 점도 수치보다 실제 주사 압력이 임상적으로 더 중요. 텍스처 애널라이저로 실제 주사기에 제형을 넣고 측정"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "텍스처 애널라이저", "eng": "Texture Analyzer", "abbr": "TA", "pron": "텍스처 애널라이저", "desc": "물질의 물리적 특성(경도, 점착성, 탄성 등)을 측정하는 장비. 본 과제에서는 실제 주사기에 제형을 넣고 push force(주사 압력)를 측정하는 데 활용"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "크기배제 크로마토그래피", "eng": "Size Exclusion Chromatography", "abbr": "SEC", "pron": "에스-이-씨 (섹)", "desc": "단백질을 크기별로 분리하는 분석법. 체로 거르듯이 큰 입자(응집체)와 정상 항체를 분리. 항체 안정성 평가의 핵심 분석법"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "동적 광산란", "eng": "Dynamic Light Scattering", "abbr": "DLS", "pron": "디-엘-에스", "desc": "레이저 빛을 쏘아 입자 크기 분포를 측정하는 분석법. 항체가 뭉쳐 있는지(응집) 확인하는 데 사용"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "탁도", "eng": "Turbidity", "abbr": "-", "pron": "터비디티", "desc": "용액이 얼마나 흐린지를 나타내는 지표. 맑은 물 vs 뿌연 물의 차이. 항체가 응집되면 용액이 흐려지므로 안정성의 간접 지표"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "버퍼 교환", "eng": "Buffer Exchange", "abbr": "-", "pron": "버퍼 익스체인지", "desc": "항체가 담긴 용액의 완충 조건을 바꾸는 과정. 다이얼리시스나 한외여과로 수행. 제형 매트릭스 제조의 필수 단계"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "다이얼리시스", "eng": "Dialysis", "abbr": "-", "pron": "다이얼리시스", "desc": "반투막을 이용하여 용액 속 작은 분자(염, 완충제)만 교환하는 정제 기법. 티백처럼 항체는 막 안에 남고 주변 용액 조건만 바뀜"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "이니셜 풀", "eng": "Initial Pool", "abbr": "-", "pron": "이니셜 풀", "desc": "세포에 유전자를 넣어(트랜스펙션) 항체를 발현시킨 초기 세포 집합. 여기서 생산성이 높은 클론을 선별하여 대량 배양에 사용"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "트랜스펙션", "eng": "Transfection", "abbr": "-", "pron": "트랜스펙션", "desc": "외부 DNA(유전자)를 세포 안에 넣는 기술. 항체 유전자를 CHO 세포 등에 넣어 항체를 발현시키는 첫 단계. 이니셜 풀 생성의 전 단계"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "클론 선별", "eng": "Clone Selection", "abbr": "-", "pron": "클론 셀렉션", "desc": "트랜스펙션 후 생성된 세포(이니셜 풀)에서 항체 생산성이 높은 단일 세포(클론)를 골라내는 과정. 이후 대량 배양의 기반이 됨"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "Ex-vivo 모델", "eng": "Ex-vivo Model", "abbr": "-", "pron": "엑스비보 모델", "desc": "생체 외(ex-vivo) 조직을 이용한 실험 모델. 본 과제에서는 돼지 사체 피부에 실제 주사를 시행하여 조직 저항 포함 주사성을 평가하는 아이디어가 논의됨. IRB 승인 없이 수행 가능한 장점"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "생체이용률", "eng": "Bioavailability", "abbr": "BA", "pron": "바이오어베일러빌리티", "desc": "투여한 약물 중 실제로 혈류에 도달하는 비율(%). IV는 정의상 100%. SC 전환 시 BA ≥ 80%가 임상적 기준. BA가 낮으면 투여량을 늘려야 하므로 환자 부담 증가"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "약동학", "eng": "Pharmacokinetics", "abbr": "PK", "pron": "파마코키네틱스", "desc": "약물이 체내에서 흡수·분포·대사·배설되는 과정을 정량적으로 연구하는 학문. \"약이 몸에서 어떻게 움직이는가\"를 다룸"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "이온 강도", "eng": "Ionic Strength", "abbr": "-", "pron": "아이오닉 스트렝스", "desc": "용액 내 이온의 총 농도를 나타내는 척도. NaCl이 많으면 이온 강도가 높아짐. 단백질 안정성에 영향을 미치므로, NaCl의 역할은 삼투압 조절뿐 아니라 ionic strength 관점에서도 해석 필요"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "히알루로니다제", "eng": "Hyaluronidase", "abbr": "-", "pron": "하이알루로니데이스", "desc": "피하 조직의 히알루론산을 분해하는 효소. 피하 공간을 넓혀 대용량(5 mL 이상) SC 투여를 가능하게 함. 할로자임(Halozyme)사의 ENHANZE® 기술이 대표적. 그러나 통증·부종·면역 반응 유발 가능성이 있어 고농도 농축이 우선 전략"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "할로자임", "eng": "Halozyme", "abbr": "-", "pron": "할로자임", "desc": "히알루로니다제(rHuPH20) 기술을 보유한 미국 바이오텍 기업. ENHANZE® 플랫폼으로 SC 대용량 투여 기술을 라이선싱. 특허 만료 임박으로 기술 접근성 확대 전망"}, {"category": "🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)", "term": "면역항암", "eng": "Immuno-oncology", "abbr": "IO", "pron": "이뮤노 온콜로지", "desc": "면역 체계를 활성화하여 암세포를 공격하는 치료 전략. 본 과제 대상 항체 3종의 주요 적응증 중 하나. 면역관문억제제(Checkpoint Inhibitor) 등이 대표적"}, {"category": "🤖 AI·소프트웨어 관련 (AI & Software)", "term": "머신러닝", "eng": "Machine Learning", "abbr": "ML", "pron": "머신러닝", "desc": "데이터에서 패턴을 자동으로 학습하는 인공지능 기법. 본 과제에서는 제형 실험 데이터 + FDA/EMA 규제 데이터를 학습하여 안정성을 예측하는 모델 개발에 활용"}, {"category": "🤖 AI·소프트웨어 관련 (AI & Software)", "term": "트랜스포머", "eng": "Transformer", "abbr": "-", "pron": "트랜스포머", "desc": "현대 AI 모델의 핵심 아키텍처. GPT, Claude 등의 기반 기술. 본 과제에서는 논문 기반 인과관계 그래프를 학습하여 제형 시나리오를 생성하는 모델에 활용 예정"}, {"category": "🤖 AI·소프트웨어 관련 (AI & Software)", "term": "임베딩", "eng": "Embedding", "abbr": "-", "pron": "임베딩", "desc": "텍스트, 분자 구조 등을 숫자 벡터(좌표)로 변환하는 기술. 비슷한 항체는 비슷한 벡터값을 가짐. 아미노산 서열을 임베딩하면 항체 간 유사도를 수학적으로 계산 가능"}, {"category": "🤖 AI·소프트웨어 관련 (AI & Software)", "term": "하이브리드 모델", "eng": "Hybrid Model", "abbr": "-", "pron": "하이브리드 모델", "desc": "두 가지 이상의 접근법을 결합한 AI 모델. 본 과제에서는 퍼블릭 데이터(규제 문서) + 논문 기반 인과관계 + 실험 데이터를 결합하여 예측 정확도를 높이는 전략"}, {"category": "🏗️ 제도·인증 관련 (Regulatory & Certification)", "term": "기술준비수준", "eng": "Technology Readiness Level", "abbr": "TRL", "pron": "티-알-엘", "desc": "기술의 성숙도를 1~9단계로 나타내는 지표. TRL 1(기초 연구)~TRL 9(상용화 완료). 본 과제의 소프트웨어 인증 목표는 TRL 7(시스템 시연 단계)"}, {"category": "🏗️ 제도·인증 관련 (Regulatory & Certification)", "term": "한국정보통신기술협회", "eng": "Telecommunications Technology Association", "abbr": "TTA", "pron": "티-티-에이", "desc": "소프트웨어 품질 인증을 담당하는 한국 기관. 본 과제에서 개발하는 AI 기반 제형 설계 소프트웨어의 인증 기관"}, {"category": "🏗️ 제도·인증 관련 (Regulatory & Certification)", "term": "지식재산권", "eng": "Intellectual Property", "abbr": "IP", "pron": "아이-피", "desc": "발명, 디자인, 소프트웨어 등에 대한 법적 권리(특허, 저작권 등). Merck가 SC 전환 소프트웨어의 IP 문제로 외부 판매를 포기한 사례가 2차 회의에서 논의됨"}, {"category": "🏗️ 제도·인증 관련 (Regulatory & Certification)", "term": "임상시험심사위원회", "eng": "Institutional Review Board", "abbr": "IRB", "pron": "아이-알-비", "desc": "인간 대상 연구의 윤리성·안전성을 심사하는 기관. 동물 조직(ex-vivo) 실험은 IRB 대상이 아니므로 절차 간소화 가능. 본 과제에서 돼지 사체 피부 실험 시 IRB 불필요"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "트랜스펙션", "eng": "Transfection", "abbr": "-", "pron": "트랜스펙션", "desc": "외부 DNA(유전자)를 세포 안에 넣는 기술. 항체 유전자를 CHO 세포 등에 넣어 항체를 발현시키는 첫 단계. 이니셜 풀 생성의 전 단계"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "클론 선별", "eng": "Clone Selection", "abbr": "-", "pron": "클론 셀렉션", "desc": "트랜스펙션 후 생성된 세포(이니셜 풀)에서 항체 생산성이 높은 단일 세포(클론)를 골라내는 과정. 이후 대량 배양의 기반이 됨"}, {"category": "🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)", "term": "Ex-vivo 모델", "eng": "Ex-vivo Model", "abbr": "-", "pron": "엑스비보 모델", "desc": "생체 외(ex-vivo) 조직을 이용한 실험 모델. 본 과제에서는 돼지 사체 피부에 실제 주사를 시행하여 조직 저항 포함 주사성을 평가하는 아이디어가 논의됨. IRB 승인 없이 수행 가능한 장점"}, {"category": "🤖 AI·소프트웨어 관련 (AI & Software)", "term": "하이브리드 모델", "eng": "Hybrid Model", "abbr": "-", "pron": "하이브리드 모델", "desc": "두 가지 이상의 접근법을 결합한 AI 모델. 본 과제에서는 퍼블릭 데이터(규제 문서) + 논문 기반 인과관계 + 실험 데이터를 결합하여 예측 정확도를 높이는 전략"}, {"category": "🏗️ 제도·인증 관련 (Regulatory & Certification)", "term": "임상시험심사위원회", "eng": "Institutional Review Board", "abbr": "IRB", "pron": "아이-알-비", "desc": "인간 대상 연구의 윤리성·안전성을 심사하는 기관. 동물 조직(ex-vivo) 실험은 IRB 대상이 아니므로 절차 간소화 가능"}];
+
+// Category color mapping
+const CAT_COLORS = {
+  '📋': '#60a5fa', '💉': '#a78bfa', '🧴': '#f472b6', '⚗': '#34d399',
+  '🛡': '#fbbf24', '🔧': '#fb923c', '🔬': '#c084fc', '🧬': '#2dd4bf',
+  '🏥': '#f87171', '💊': '#e879f9', '📊': '#38bdf8', '🏛': '#94a3b8',
+  '🧪': '#4ade80', '🩺': '#f97316', '🤖': '#818cf8', '🏗': '#a3e635'
+};
+
+function getCatColor(cat) {
+  const emoji = cat ? cat.charAt(0) : '';
+  // Some emojis are multi-char
+  for (const [key, color] of Object.entries(CAT_COLORS)) {
+    if (cat && cat.startsWith(key)) return color;
+  }
+  return '#64748b';
+}
+
+function getCatShort(cat) {
+  if (!cat) return '';
+  const m = cat.match(/^[^\s]+\s+(.+?)(?:\s*\(|$)/);
+  return m ? m[1] : cat;
+}
+
+// ========== STATE ==========
+let glossary = [...INITIAL_DATA];
+let activeCategory = null;
+let searchQuery = '';
+let uploadedText = '';
+let uploadedFileName = '';
+
+// ========== RENDER ==========
+function getCategories() {
+  const cats = [];
+  const counts = {};
+  for (const item of glossary) {
+    if (!counts[item.category]) {
+      counts[item.category] = 0;
+      cats.push(item.category);
+    }
+    counts[item.category]++;
+  }
+  return cats.map(c => ({ name: c, count: counts[c] }));
+}
+
+function getFiltered() {
+  let items = glossary;
+  if (activeCategory) {
+    items = items.filter(i => i.category === activeCategory);
+  }
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    items = items.filter(i =>
+      i.term.toLowerCase().includes(q) ||
+      i.eng.toLowerCase().includes(q) ||
+      i.abbr.toLowerCase().includes(q) ||
+      i.pron.toLowerCase().includes(q) ||
+      i.desc.toLowerCase().includes(q)
+    );
+  }
+  return items;
+}
+
+function renderSidebar() {
+  const cats = getCategories();
+  const sb = document.getElementById('sidebar');
+  sb.innerHTML = `
+    <button class="sidebar-btn ${!activeCategory ? 'active' : ''}" onclick="setCategory(null)">
+      <span class="cat-dot" style="background:#64748b"></span>
+      전체 보기
+      <span class="cat-count">${glossary.length}</span>
+    </button>
+  ` + cats.map(c => `
+    <button class="sidebar-btn ${activeCategory === c.name ? 'active' : ''}" 
+            onclick="setCategory('${c.name.replace(/'/g, "\\'")}')" title="${c.name}">
+      <span class="cat-dot" style="background:${getCatColor(c.name)}"></span>
+      ${getCatShort(c.name)}
+      <span class="cat-count">${c.count}</span>
+    </button>
+  `).join('');
+}
+
+function renderMain() {
+  const filtered = getFiltered();
+  const main = document.getElementById('mainContent');
+  
+  document.getElementById('termCount').textContent = glossary.length;
+  document.getElementById('catCount').textContent = getCategories().length;
+  document.getElementById('searchCount').textContent = searchQuery ? `${filtered.length}건` : '';
+
+  if (filtered.length === 0) {
+    main.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <div class="empty-state-text">검색 결과가 없습니다</div>
+      </div>`;
+    return;
+  }
+
+  // Group by category
+  const groups = {};
+  for (const item of filtered) {
+    if (!groups[item.category]) groups[item.category] = [];
+    groups[item.category].push(item);
+  }
+
+  let html = '';
+  for (const [cat, items] of Object.entries(groups)) {
+    const color = getCatColor(cat);
+    html += `
+      <section class="category-section" id="cat-${encodeURIComponent(cat)}">
+        <div class="category-header">
+          <span class="category-dot" style="background:${color}"></span>
+          <span class="category-name">${cat}</span>
+          <span class="category-count">${items.length}</span>
+        </div>
+        <div class="term-grid">
+          ${items.map(item => {
+            const isNew = item._new;
+            const idx = glossary.indexOf(item);
+            return `
+              <div class="term-card ${isNew ? 'new-term' : ''}" data-idx="${idx}">
+                <button class="term-edit-btn" onclick="startEdit(${idx})" title="편집">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                </button>
+                <div class="term-view">
+                  <div class="term-top">
+                    <span class="term-kr">${hl(item.term)}</span>
+                    <span class="term-eng">${hl(item.eng)}</span>
+                  </div>
+                  <div class="term-meta">
+                    ${item.abbr && item.abbr !== '-' ? `<span class="term-badge badge-abbr">${hl(item.abbr)}</span>` : ''}
+                    ${item.pron ? `<span class="term-badge badge-pron">${item.pron}</span>` : ''}
+                  </div>
+                  <div class="term-desc">${hl(item.desc)}</div>
+                </div>
+                <div class="term-form">
+                  <div class="edit-row">
+                    <div class="edit-field">
+                      <label class="edit-label">용어</label>
+                      <input class="edit-input" data-field="term" value="${escAttr(item.term)}">
+                    </div>
+                    <div class="edit-field">
+                      <label class="edit-label">영문명</label>
+                      <input class="edit-input" data-field="eng" value="${escAttr(item.eng)}">
+                    </div>
+                  </div>
+                  <div class="edit-row">
+                    <div class="edit-field">
+                      <label class="edit-label">약어</label>
+                      <input class="edit-input" data-field="abbr" value="${escAttr(item.abbr)}">
+                    </div>
+                    <div class="edit-field">
+                      <label class="edit-label">읽는 법</label>
+                      <input class="edit-input" data-field="pron" value="${escAttr(item.pron)}">
+                    </div>
+                  </div>
+                  <div class="edit-field">
+                    <label class="edit-label">설명</label>
+                    <textarea class="edit-textarea" data-field="desc" rows="3">${escHtml(item.desc)}</textarea>
+                  </div>
+                  <div class="edit-actions">
+                    <button class="edit-delete" onclick="deleteItem(${idx})">🗑 삭제</button>
+                    <button class="edit-cancel" onclick="cancelEdit(${idx})">취소</button>
+                    <button class="edit-save" onclick="saveEdit(${idx})">저장</button>
+                  </div>
+                </div>
+              </div>`;
+          }).join('')}
+        </div>
+      </section>`;
+  }
+  main.innerHTML = html;
+}
+
+function hl(text) {
+  if (!searchQuery) return text;
+  const q = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${q})`, 'gi'), '<mark style="background:rgba(59,130,246,0.15);color:inherit;border-radius:2px;padding:0 1px">$1</mark>');
+}
+
+function escAttr(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function setCategory(cat) {
+  activeCategory = cat;
+  renderSidebar();
+  renderMain();
+}
+
+// ========== EDIT ==========
+function startEdit(idx) {
+  const card = document.querySelector(`.term-card[data-idx="${idx}"]`);
+  if (!card) return;
+  // Close any other open edits
+  document.querySelectorAll('.term-card.editing').forEach(c => {
+    if (c !== card) c.classList.remove('editing');
+  });
+  card.classList.add('editing');
+  // Focus first input
+  setTimeout(() => {
+    const inp = card.querySelector('.edit-input');
+    if (inp) inp.focus();
+  }, 50);
+}
+
+function cancelEdit(idx) {
+  const card = document.querySelector(`.term-card[data-idx="${idx}"]`);
+  if (card) card.classList.remove('editing');
+  // Reset fields to original values
+  renderMain();
+}
+
+function saveEdit(idx) {
+  const card = document.querySelector(`.term-card[data-idx="${idx}"]`);
+  if (!card) return;
+  const item = glossary[idx];
+  if (!item) return;
+
+  const fields = ['term', 'eng', 'abbr', 'pron'];
+  fields.forEach(f => {
+    const inp = card.querySelector(`[data-field="${f}"]`);
+    if (inp) item[f] = inp.value.trim();
+  });
+  const descArea = card.querySelector('[data-field="desc"]');
+  if (descArea) item.desc = descArea.value.trim();
+
+  renderSidebar();
+  renderMain();
+  showToast(`✏️ "${item.term}" 수정 완료`, 'success');
+}
+
+function deleteItem(idx) {
+  const item = glossary[idx];
+  if (!item) return;
+  if (!confirm(`"${item.term}" 용어를 삭제하시겠습니까?`)) return;
+  const name = item.term;
+  glossary.splice(idx, 1);
+  renderSidebar();
+  renderMain();
+  showToast(`🗑 "${name}" 삭제됨`, '');
+}
+
+// ========== SEARCH ==========
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  renderMain();
+});
+
+// ========== FILE UPLOAD ==========
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileInfo = document.getElementById('fileInfo');
+const fileName = document.getElementById('fileName');
+const extractBtn = document.getElementById('extractBtn');
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropzone.classList.remove('dragover');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', (e) => {
+  if (e.target.files.length) handleFile(e.target.files[0]);
+});
+document.getElementById('fileRemove').addEventListener('click', clearFile);
+
+async function handleFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (!['docx', 'txt'].includes(ext)) {
+    showToast('⚠️ .docx 또는 .txt 파일만 지원합니다', 'error');
+    return;
+  }
+  uploadedFileName = file.name;
+  fileName.textContent = file.name;
+  fileInfo.classList.add('show');
+  dropzone.style.display = 'none';
+  extractBtn.classList.add('ready');
+
+  if (ext === 'txt') {
+    uploadedText = await file.text();
+  } else {
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer });
+    uploadedText = result.value;
+  }
+}
+
+function clearFile() {
+  uploadedText = '';
+  uploadedFileName = '';
+  fileInfo.classList.remove('show');
+  dropzone.style.display = '';
+  extractBtn.classList.remove('ready');
+  fileInput.value = '';
+  document.getElementById('resultsArea').classList.remove('show');
+  document.getElementById('progressArea').classList.remove('show');
+}
+
+// ========== MODAL ==========
+document.getElementById('uploadToggle').addEventListener('click', () => {
+  document.getElementById('uploadModal').classList.add('show');
+});
+document.getElementById('uploadClose').addEventListener('click', closeModal);
+document.getElementById('uploadModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeModal();
+});
+function closeModal() {
+  document.getElementById('uploadModal').classList.remove('show');
+}
+
+// ========== AI EXTRACTION ==========
+extractBtn.addEventListener('click', async () => {
+  if (!uploadedText) return;
+  
+  extractBtn.classList.add('loading');
+  extractBtn.textContent = '⏳ AI 분석 중...';
+  const progressArea = document.getElementById('progressArea');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  progressArea.classList.add('show');
+  document.getElementById('resultsArea').classList.remove('show');
+  
+  progressBar.style.width = '20%';
+  progressText.textContent = '회의록 텍스트 전처리 중...';
+
+  // Build existing terms list for dedup
+  const existingTerms = glossary.map(g => `${g.term} (${g.eng})`).join(', ');
+  
+  // Truncate meeting text if too long
+  const meetingText = uploadedText.length > 12000 ? uploadedText.slice(0, 12000) + '\n...(truncated)' : uploadedText;
+
+  progressBar.style.width = '40%';
+  progressText.textContent = 'Claude에게 용어 추출 요청 중...';
+
+  const systemPrompt = `You are a bilingual (Korean/English) pharmaceutical terminology expert specializing in antibody formulation (SC mAb).
+
+Given a meeting transcript or minutes, extract NEW technical terms that should be in a glossary. 
+
+EXISTING terms (DO NOT extract these again): ${existingTerms}
+
+For each new term, provide:
+- term: Korean term
+- eng: English term
+- abbr: Abbreviation (or "-")
+- pron: Korean pronunciation guide
+- desc: Description in Korean (1-2 sentences, accessible to non-experts, with analogy if possible)
+- category: One of these exact categories:
+  📋 제형 관련 기본 용어 (Formulation Basics)
+  💉 투여 경로 (Route of Administration)
+  🧴 계면활성제 (Surfactant, 서팩턴트)
+  ⚗️ 완충제 (Buffer, 버퍼)
+  🛡️ 안정화제 (Stabilizer, 스테빌라이저)
+  🔧 기타 첨가물 (Others)
+  🔬 항체 분류 - 페노타입 (Phenotype)
+  🧬 항체 기원 (Antibody Origin)
+  🏥 적응증 (Indication)
+  💊 예시 제품명 (Example Products)
+  📊 분석 및 안정성 관련 용어
+  🏛️ 규제 기관 및 도구
+  🧪 실험·분석 장비 및 기법 (Experimental & Analytical Methods)
+  🩺 약동학 및 임상 관련 (Pharmacokinetics & Clinical)
+  🤖 AI·소프트웨어 관련 (AI & Software)
+  🏗️ 제도·인증 관련 (Regulatory & Certification)
+
+Only extract terms that are:
+1. Technical/domain-specific (not common words)
+2. Actually mentioned in the meeting text
+3. NOT already in the existing terms list
+
+Respond ONLY with a JSON array. No markdown, no backticks, no preamble.
+Example: [{"term":"용어","eng":"English","abbr":"-","pron":"발음","desc":"설명","category":"📋 제형 관련 기본 용어 (Formulation Basics)"}]
+If no new terms found, return: []`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 4000,
+        system: systemPrompt,
+        messages: [
+          { role: "user", content: `다음 회의록에서 새로운 전문 용어를 추출해주세요:\n\n${meetingText}` }
+        ]
+      })
+    });
+
+    progressBar.style.width = '80%';
+    progressText.textContent = '결과 분석 중...';
+
+    const data = await response.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    
+    let newTerms = [];
+    try {
+      newTerms = JSON.parse(clean);
+    } catch (e) {
+      // Try to find JSON array in the response
+      const match = clean.match(/\[[\s\S]*\]/);
+      if (match) newTerms = JSON.parse(match[0]);
+    }
+
+    progressBar.style.width = '100%';
+    progressText.textContent = '완료!';
+
+    // Check for duplicates
+    const existingSet = new Set(glossary.map(g => g.term.toLowerCase()));
+    const existingEngSet = new Set(glossary.map(g => g.eng.toLowerCase()));
+
+    newTerms = newTerms.map(t => ({
+      ...t,
+      _duplicate: existingSet.has(t.term.toLowerCase()) || existingEngSet.has(t.eng.toLowerCase())
+    }));
+
+    renderResults(newTerms);
+    
+  } catch (err) {
+    progressText.textContent = '❌ 오류 발생: ' + err.message;
+    showToast('API 호출 오류가 발생했습니다', 'error');
+  }
+
+  extractBtn.classList.remove('loading');
+  extractBtn.textContent = '🔍 용어 추출 시작';
+  extractBtn.classList.add('ready');
+});
+
+function renderResults(terms) {
+  const resultsArea = document.getElementById('resultsArea');
+  const resultsList = document.getElementById('resultsList');
+  const resultsCount = document.getElementById('resultsCount');
+  
+  const nonDup = terms.filter(t => !t._duplicate);
+  resultsCount.textContent = `${nonDup.length}개 신규`;
+
+  if (terms.length === 0) {
+    resultsList.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text3)">새로운 용어가 발견되지 않았습니다</div>';
+    resultsArea.classList.add('show');
+    document.getElementById('addBtn').style.display = 'none';
+    return;
+  }
+
+  resultsList.innerHTML = terms.map((t, i) => `
+    <div class="result-item" style="${t._duplicate ? 'opacity:0.5' : ''}">
+      <input type="checkbox" class="result-check" data-idx="${i}" ${!t._duplicate ? 'checked' : ''} ${t._duplicate ? 'disabled' : ''}>
+      <div class="result-body">
+        <div class="result-term">${t.term} <span style="color:var(--text3);font-weight:400;font-size:12px">${t.eng}</span></div>
+        ${t.abbr && t.abbr !== '-' ? `<div class="result-eng" style="font-family:'JetBrains Mono',monospace">${t.abbr}</div>` : ''}
+        <div class="result-desc">${t.desc}</div>
+        ${t._duplicate ? '<span class="result-dup">⚠ 이미 존재하는 용어</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('addBtn').style.display = '';
+  resultsArea.classList.add('show');
+
+  // Store for adding
+  window._extractedTerms = terms;
+}
+
+// ========== ADD TERMS ==========
+document.getElementById('addBtn').addEventListener('click', () => {
+  const checks = document.querySelectorAll('.result-check:checked');
+  const terms = window._extractedTerms || [];
+  let added = 0;
+
+  checks.forEach(cb => {
+    const idx = parseInt(cb.dataset.idx);
+    const t = terms[idx];
+    if (t && !t._duplicate) {
+      glossary.push({
+        category: t.category,
+        term: t.term,
+        eng: t.eng,
+        abbr: t.abbr || '-',
+        pron: t.pron || '',
+        desc: t.desc,
+        _new: true
+      });
+      added++;
+    }
+  });
+
+  if (added > 0) {
+    renderSidebar();
+    renderMain();
+    showToast(`✅ ${added}개 용어가 추가되었습니다`, 'success');
+    closeModal();
+    clearFile();
+  } else {
+    showToast('추가할 용어가 없습니다', 'error');
+  }
+});
+
+// ========== TOAST ==========
+function showToast(msg, type = '') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show ' + type;
+  setTimeout(() => toast.className = 'toast', 3000);
+}
+
+// ========== INIT ==========
+renderSidebar();
+renderMain();
+</script>
+</body>
+</html>
